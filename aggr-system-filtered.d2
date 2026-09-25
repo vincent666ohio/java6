@@ -1,0 +1,531 @@
+# ИТ-ландшафт: агрегация по системам — без WSS Docs, 1С, ROSBANK FAT CLIENT, ESB, ATLASSIAN, CDWH, ПП Дельта
+title: "ИТ-ландшафт ГОСТ: агрегация по системам" {near: top-center}
+direction: right
+classes: {
+  db:        {style: {stroke: "#1f6feb"; stroke-width: 2}}
+  app:       {style: {stroke: "#2da44e"; stroke-width: 2}}
+  essential: {style: {stroke: "#8b949e"; stroke-dash: 3}}
+  tunnel:    {style: {stroke: "#bf3989"; stroke-width: 3; stroke-dash: 5}}
+  fw:        {style: {stroke: "#bf8700"; stroke-width: 4}}
+  lb:        {style: {fill: "#ddf4ff"; stroke: "#0969da"}}
+  dbase:     {style: {fill: "#fff8c5"; stroke: "#9a6700"}}
+  gate:      {style: {fill: "#ffeef0"; stroke: "#cf222e"; stroke-width: 2}}
+  ext:       {style: {fill: "#f6f8fa"; stroke: "#57606a"; stroke-dash: 2}}
+  client:    {style: {fill: "#fbefff"; stroke: "#8250df"}}
+  hide:      {style: {opacity: 0; stroke-width: 0; fill: "#ffffff"}}
+}
+"Intranet: внутри периметра" -> "Extranet: вне периметра": "" {style: {opacity: 0; stroke-width: 0}}
+"Intranet: внутри периметра": {
+  style.fill: "#ddf4ff"
+  style.stroke: "#0969da"
+  style.stroke-width: 3
+  "ACTIVE DIRECTORY DOMAINS": {
+    "VWF.VWFS-RU — родительский домен": {
+      direction: right
+      s1082: {
+        shape: hexagon
+        label: "FSRURDC01\n10.38.173.100\nVWF.VWFS-RU · 10.38.173.\n100"
+        tooltip: "FSRURDC01 | FSRURDC01.VWF.VWFS-RU | VWF.VWFS-RU · 10.38.173.100 | 10.38.173.100"
+      }
+      s9101: {
+        shape: hexagon
+        label: "FSRURDC02\n10.38.173.102\nVWF.VWFS-RU · 10.38.173.\n102"
+        tooltip: "FSRURDC02 | FSRURDC02.VWF.VWFS-RU | VWF.VWFS-RU · 10.38.173.102 | 10.38.173.102"
+      }
+    }
+    "FSRU.VWF.VWFS-RU — дочерний домен (все серверы Intranet)": {
+      direction: right
+      s1083: {
+        shape: hexagon
+        label: "FSRUC1DC01\n10.38.173.101\nFSRU.VWF.VWFS-RU · 10.38\n.173.101"
+        tooltip: "FSRUC1DC01 | FSRUC1DC01.FSRU.VWF.VWFS-RU | FSRU.VWF.VWFS-RU · 10.38.173.101 | 10.38.173.101"
+      }
+      s9102: {
+        shape: hexagon
+        label: "FSRUC1DC02\n10.38.173.103\nFSRU.VWF.VWFS-RU · 10.38\n.173.103"
+        tooltip: "FSRUC1DC02 | FSRUC1DC02.FSRU.VWF.VWFS-RU | FSRU.VWF.VWFS-RU · 10.38.173.103 | 10.38.173.103"
+      }
+      s9103: {
+        shape: hexagon
+        label: "FSRUC1DC03\n10.38.173.122\nFSRU.VWF.VWFS-RU · 10.38\n.173.122"
+        tooltip: "FSRUC1DC03 | FSRUC1DC03.FSRU.VWF.VWFS-RU | FSRU.VWF.VWFS-RU · 10.38.173.122 | 10.38.173.122"
+      }
+      s9104: {
+        shape: hexagon
+        label: "FSRUC1DC04\n10.38.173.123\nFSRU.VWF.VWFS-RU · 10.38\n.173.123"
+        tooltip: "FSRUC1DC04 | FSRUC1DC04.FSRU.VWF.VWFS-RU | FSRU.VWF.VWFS-RU · 10.38.173.123 | 10.38.173.123"
+      }
+    }
+  }
+  "BSS": {
+    "Балансировщики и шлюзы": {
+    direction: right
+      s735: {
+        shape: hexagon
+        label: "RU-PFS-PRD-BSS-EXT\n10.38.164.160\nvs_195.66.67.66_443_dbo2\n.pikhtabank.ru"
+        tooltip: "RU-PFS-PRD-BSS-EXT | BSS LoadBalancer Prod | vs_195.66.67.66_443_dbo2.pikhtabank.ru | 10.38.164.160"
+        class: lb
+      }
+    }
+    "Серверы приложений": {
+    direction: right
+      s523: {
+        shape: rectangle
+        label: "FSRUMOSAP0133\n10.38.165.36\nCRQTS_APPWEB"
+        tooltip: "FSRUMOSAP0133 | BSS APP WEB 02 | CRQTS_APPWEB | 10.38.165.36"
+      }
+      s547: {
+        shape: rectangle
+        label: "FSRUMOSAP0076\n10.38.165.32\nBSS APP OLD"
+        tooltip: "FSRUMOSAP0076 | BSS APP OLD | 10.38.165.32"
+      }
+      s565: {
+        shape: rectangle
+        label: "FSRUMOSAP0135\n10.38.173.132\nBSS ТИР"
+        tooltip: "FSRUMOSAP0135 | BSS ТИР | 10.38.173.132"
+      }
+      s535: {
+        shape: rectangle
+        label: "FSRUMOSWP0016\n10.38.165.41\nCRQTS_WEB"
+        tooltip: "FSRUMOSWP0016 | BSS WebServer 2 | CRQTS_WEB | 10.38.165.41"
+      }
+      s519: {
+        shape: rectangle
+        label: "FSRUMOSAP0132\n10.38.165.34\nCRQTS_APPWEB"
+        tooltip: "FSRUMOSAP0132 | BSS APP WEB 01 | CRQTS_APPWEB | 10.38.165.34"
+      }
+      s539: {
+        shape: rectangle
+        label: "FSRUMOSWP0015\n10.38.165.7\nCRQTS_WEB"
+        tooltip: "FSRUMOSWP0015 | BSS WebServer 1 | CRQTS_WEB | 10.38.165.7"
+      }
+    }
+    "СУБД": {
+    direction: right
+      s576: {
+        shape: cylinder
+        label: "SQLBSS7P\n10.38.168.109\nBSS DB"
+        tooltip: "SQLBSS7P | BSS DB | 10.38.168.109"
+        class: dbase
+      }
+    }
+  }
+  "DIASOFT": {
+    "Серверы приложений": {
+    direction: right
+      s55: {
+        shape: rectangle
+        label: "FSRUMOSAP0061\n10.38.180.54\nPrint Server"
+        tooltip: "FSRUMOSAP0061 | Print Server | 10.38.180.54"
+      }
+      s77: {
+        shape: rectangle
+        label: "FSRUMOSAP0036\n10.38.162.101\nDiasoft Scheduler"
+        tooltip: "FSRUMOSAP0036 | Diasoft Scheduler | 10.38.162.101"
+      }
+      s81: {
+        shape: rectangle
+        label: "FSRUMOSAP0037\n10.38.162.102\nDiasoft XML Blaster"
+        tooltip: "FSRUMOSAP0037 | Diasoft XML Blaster | 10.38.162.102"
+      }
+      s85: {
+        shape: rectangle
+        label: "FSRUMOSAP0042\n10.38.162.103\nDiasoft Front Office"
+        tooltip: "FSRUMOSAP0042 | Diasoft Front Office | 10.38.162.103"
+      }
+      s87: {
+        shape: rectangle
+        label: "FSRUMOSAP0044\n10.38.162.104\nDiasoft PTS"
+        tooltip: "FSRUMOSAP0044 | Diasoft PTS | 10.38.162.104"
+      }
+      s89: {
+        shape: rectangle
+        label: "FSRUMOSAP0093\n10.38.162.105\nDiasoft Tax"
+        tooltip: "FSRUMOSAP0093 | Diasoft Tax | 10.38.162.105"
+      }
+      s91: {
+        shape: rectangle
+        label: "FSRUMOSAP0035\n10.38.162.100\nDiasoft Deployment"
+        tooltip: "FSRUMOSAP0035 | Diasoft Deployment | 10.38.162.100"
+      }
+      s211: {
+        shape: rectangle
+        label: "FSRUMOSAP0023\n10.38.165.26\nDiasoft SVN"
+        tooltip: "FSRUMOSAP0023 | Diasoft SVN | 10.38.165.26"
+      }
+      s94: {
+        shape: rectangle
+        label: "FSRUMOSJP0015\n10.38.166.25\nAxenix Jump Server"
+        tooltip: "FSRUMOSJP0015 | Axenix Jump Server | 10.38.166.25"
+      }
+      s213: {
+        shape: rectangle
+        label: "FSRUMOSAT0124\n10.38.163.24\nDisk J"
+        tooltip: "FSRUMOSAT0124 | Disk J | 10.38.163.24"
+      }
+    }
+    "СУБД": {
+    direction: right
+      s103: {
+        shape: cylinder
+        label: "SQLPTS8P\n10.38.168.96\nDiasoft PTS DB"
+        tooltip: "SQLPTS8P | Diasoft PTS DB | 10.38.168.96"
+        class: dbase
+      }
+      s99: {
+        shape: cylinder
+        label: "SQLABS8P\n10.38.168.87\nDiasoft Back DB"
+        tooltip: "SQLABS8P | Diasoft Back DB | 10.38.168.87"
+        class: dbase
+      }
+      s101: {
+        shape: cylinder
+        label: "SQLFOD8P\n10.38.168.72\nDiasoft Front Office DB"
+        tooltip: "SQLFOD8P | Diasoft Front Office DB | 10.38.168.72"
+        class: dbase
+      }
+    }
+  }
+  "Diasoft Взаимодействие с Госорганами": {
+    "Серверы приложений": {
+    direction: right
+      s934: {
+        shape: rectangle
+        label: "FSRUMOCJ0033\n10.42.222.56\nСКАД Сигнатура"
+        tooltip: "FSRUMOCJ0033 | СКАД Сигнатура | 10.42.222.56"
+      }
+      s925: {
+        shape: rectangle
+        label: "FSRUMOSAP0150\n10.38.165.45\nDiasoft ФНС.ЕНС"
+        tooltip: "FSRUMOSAP0150 | Diasoft ФНС.ЕНС | 10.38.165.45"
+      }
+      s929: {
+        shape: rectangle
+        label: "FSRUMOSAP0151\n10.38.165.22\nDiasoft Transport Server"
+        tooltip: "FSRUMOSAP0151 | Diasoft Transport Server | 10.38.165.22"
+      }
+      s969: {
+        shape: rectangle
+        label: "FSRUMOSAP0144\n10.38.165.43\nDiasoft ФССП"
+        tooltip: "FSRUMOSAP0144 | Diasoft ФССП | 10.38.165.43"
+      }
+      s992: {
+        shape: rectangle
+        label: "FSRUMOSAP0157\n10.38.164.109\nDiasoft Одно Окно + УИН"
+        tooltip: "FSRUMOSAP0157 | Diasoft Одно Окно + УИН | 10.38.164.109"
+      }
+      s1019: {
+        shape: rectangle
+        label: "FSRUMOSAP0158\n10.38.164.104\nDiasoft ФМС (Паспорта)"
+        tooltip: "FSRUMOSAP0158 | Diasoft ФМС (Паспорта) | 10.38.164.104"
+      }
+    }
+    "СУБД": {
+    direction: right
+      s939: {
+        shape: cylinder
+        label: "SQLENS8P\n10.38.168.119\nDiasoft ЕНС DB"
+        tooltip: "SQLENS8P | Diasoft ЕНС DB | 10.38.168.119"
+        class: dbase
+      }
+      s973: {
+        shape: cylinder
+        label: "SQLFSSP8P\n10.38.168.115\nDiasoft ФССП DB"
+        tooltip: "SQLFSSP8P | Diasoft ФССП DB | 10.38.168.115"
+        class: dbase
+      }
+      s996: {
+        shape: cylinder
+        label: "SQLUIN8P\n10.38.168.76\nDiasoft УИН + ОО DB"
+        tooltip: "SQLUIN8P | Diasoft УИН + ОО DB | 10.38.168.76"
+        class: dbase
+      }
+      s1015: {
+        shape: cylinder
+        label: "SQLFMS8P\n10.38.168.77\nDiasoft УИН DB"
+        tooltip: "SQLFMS8P | Diasoft УИН DB | 10.38.168.77"
+        class: dbase
+      }
+    }
+  }
+  "HA Proxy": {
+    s797: {
+      shape: cloud
+      label: "FSRUMOSIT0020\n10.38.172.132\nHA Proxy"
+      tooltip: "FSRUMOSIT0020 | HA Proxy | 10.38.172.132"
+      class: gate
+    }
+  }
+  "Контур ПСБР": {
+    s179: {
+      shape: cylinder
+      label: "SQLPSRB7P\n10.38.168.132\nПСБР БД"
+      tooltip: "SQLPSRB7P | ПСБР БД | 10.38.168.132"
+      class: dbase
+    }
+    "Контур Формирования": {
+      s204: {
+        shape: rectangle
+        label: "FSRUMOCJ0027\n10.42.222.164\nDiasoft ЗЭС Оператор"
+        tooltip: "FSRUMOCJ0027 | Diasoft ЗЭС Оператор | 10.42.222.164"
+      }
+    }
+    "Контур Контроля": {
+      s203: {
+        shape: rectangle
+        label: "FSRUMOCJ0034\n10.42.222.172\nDiasoft ЗЭС Контролёр"
+        tooltip: "FSRUMOCJ0034 | Diasoft ЗЭС Контролёр | 10.42.222.172"
+      }
+    }
+    "Контур ТШ ЦБРФ": {
+      s202: {
+        shape: rectangle
+        label: "FSRUMOCJ0022\n10.42.222.103\nАРМКБР-Н"
+        tooltip: "FSRUMOCJ0022 | АРМКБР-Н | 10.42.222.103"
+      }
+    }
+  }
+  "Корпоративный Прокси": {
+    s701: {
+      shape: cloud
+      label: "proxy\n10.38.163.218\nКорпоративный прокси (Ka\nspersky Web Traffic Secu\nrity)"
+      tooltip: "proxy | KWTS | Корпоративный прокси (Kaspersky Web Traffic Security) | 10.38.163.218"
+      class: gate
+    }
+  }
+  "Файловые Серверы (NetApp Shares)": {
+    s118: {
+      shape: stored_data
+      label: "FSRUMOGT0004\n10.38.164.78\nDisk T (L-Test)"
+      tooltip: "FSRUMOGT0004 | Disk T (L-Test) | 10.38.164.78"
+    }
+    s119: {
+      shape: stored_data
+      label: "FSRUMOGP0005\n10.38.164.101\nDISK L"
+      tooltip: "FSRUMOGP0005 | DISK L | 10.38.164.101"
+    }
+    s120: {
+      shape: stored_data
+      label: "FSRUMOG00003\n10.38.164.100\nDisk Q"
+      tooltip: "FSRUMOG00003 | Disk Q | 10.38.164.100"
+    }
+    s183: {
+      shape: stored_data
+      label: "FSRUMOGP0007\n10.38.168.156\nDisk P"
+      tooltip: "FSRUMOGP0007 | Disk P | 10.38.168.156"
+    }
+  }
+}
+"Extranet: вне периметра": {
+  style.fill: "#ffeef0"
+  style.stroke: "#cf222e"
+  style.stroke-width: 3
+  "Вебсервисы для КРЕ": {
+    s1062: {
+      shape: cloud
+      label: "https://nh.bki-okb.com/OnlineMatchingS\n185.125.229.129\nhttps://ch.bki-okb.com/u\nch/report; https://www.r\nb-ei.com/cpuEnquiry.asp;"
+      tooltip: "https://nh.bki-okb.com/OnlineMatchingService/OnlineMatching.asmx | https://ch.bki-okb.com/uch/report; https://www.rb-ei.com/cpuEnquiry.asp; https://ssp.nbki.ru/qbch/v2_0/; https://ssl.croinform.ru:450/api | 185.125.229.129"
+      class: ext
+    }
+  }
+  "Внешние системы (Extranet)": {
+    s615: {
+      shape: cloud
+      label: "ROSBANK\n194.8.224.107"
+      tooltip: "ROSBANK | 194.8.224.107"
+      class: ext
+    }
+    s1031: {
+      shape: cloud
+      label: "StreamTelecom API\n78.155.208.212\nhttps://gateway.api.sc/*"
+      tooltip: "StreamTelecom API | https://gateway.api.sc/* | 78.155.208.212"
+      class: ext
+    }
+  }
+  "Клиенты ДБО B2B": {
+    s741: {
+      shape: person
+      label: "Рабочее место / мобильный клиент"
+      tooltip: "Рабочее место / мобильный клиент"
+      class: client
+    }
+  }
+  "Контур": {
+    s829: {
+      shape: cloud
+      label: "Контур.Диадок API\n46.17.206.14\nhttps://diadoc-api.kontu\nr.ru/"
+      tooltip: "Контур.Диадок API | https://diadoc-api.kontur.ru/ | 46.17.206.14"
+      class: ext
+    }
+    s834: {
+      shape: cloud
+      label: "Контур.Фокус API\n46.17.206.17\nhttps://focus-api.kontur\n.ru/api2; https://focus-\napi.kontur.ru/api3"
+      tooltip: "Контур.Фокус API | https://focus-api.kontur.ru/api2; https://focus-api.kontur.ru/api3 | 46.17.206.17"
+      class: ext
+    }
+  }
+  "СМЭВ": {
+    s963: {
+      shape: cloud
+      label: "ГИС ГМП FTP\n172.20.3.12\nftp://172.20.3.12/"
+      tooltip: "ГИС ГМП FTP | ftp://172.20.3.12/ | 172.20.3.12"
+      class: ext
+    }
+    s896: {
+      shape: cloud
+      label: "ГИС ГМП\n172.20.3.12\nhttp://172.20.3.12:7500/\nws?wsdl"
+      tooltip: "ГИС ГМП | http://172.20.3.12:7500/ws?wsdl | 172.20.3.12"
+      class: ext
+    }
+  }
+  "СПАРК": {
+    s913: {
+      shape: cloud
+      label: "Вебсервисы Interfax\n46.28.16.113\nhttp://webservicefarm.in\nterfax.ru/IfaxWebService\n/ifaxwebservice.asmx?wsd"
+      tooltip: "Вебсервисы Interfax | http://webservicefarm.interfax.ru/IfaxWebService/ifaxwebservice.asmx?wsdl | 46.28.16.113"
+      class: ext
+    }
+  }
+  "ФЕДРЕСУРС": {
+    s1038: {
+      shape: cloud
+      label: "Вебсервисы Федресурс\n46.28.18.13\nhttps://services.fedresu\nrs.ru/SignificantEvents/\nMessagePublishService"
+      tooltip: "Вебсервисы Федресурс | https://services.fedresurs.ru/SignificantEvents/MessagePublishService | 46.28.18.13"
+      class: ext
+    }
+  }
+  "ЦБ РФ": {
+    s1049: {
+      shape: cloud
+      label: "ТШ КБР DiSec\n172.21.1.26\n172.21.1.26 CD-TUZ01; 17\n2.21.1.34 CD-TUZ02; 172.\n21.1.42 CD-TUZ03; 172.21"
+      tooltip: "ТШ КБР DiSec | ТШ КБР DiSec | 172.21.1.26 CD-TUZ01; 172.21.1.34 CD-TUZ02; 172.21.1.42 CD-TUZ03; 172.21.1.50 CD-TUZ04 | 172.21.1.26"
+      class: ext
+    }
+    s841: {
+      shape: cloud
+      label: "Курсы валют (Веб сервис для получения \n185.178.208.7\nhttps://www.cbr.ru/Daily\nInfoWebServ/DailyInfo.as\nmx"
+      tooltip: "Курсы валют (Веб сервис для получения ежедневных данных ) | https://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx | 185.178.208.7"
+      class: ext
+    }
+    s881: {
+      shape: cloud
+      label: "ЛК ИО ВП ЕПВВ\nhttps://www.portal5cbr.r\nu"
+      tooltip: "ЛК ИО ВП ЕПВВ | https://www.portal5cbr.ru"
+      class: ext
+    }
+    s887: {
+      shape: cloud
+      label: "tsp1.ca.cbr.ru\n212.40.216.162\ntsp2.ca.cbr.ru; tsp3.ca.\ncbr.ru; tsp4.ca.cbr.ru"
+      tooltip: "tsp1.ca.cbr.ru | Доверенные сервера меток времени | tsp2.ca.cbr.ru; tsp3.ca.cbr.ru; tsp4.ca.cbr.ru | 212.40.216.162"
+      class: ext
+    }
+    s1051: {
+      shape: cloud
+      label: "Сервисы КБР\n172.21.1.57"
+      tooltip: "Сервисы КБР | 172.21.1.57"
+      class: ext
+    }
+  }
+}
+"Intranet: внутри периметра"."ACTIVE DIRECTORY DOMAINS"."VWF.VWFS-RU — родительский домен".s1082 -> "Intranet: внутри периметра"."ACTIVE DIRECTORY DOMAINS"."FSRU.VWF.VWFS-RU — дочерний домен (все серверы Intranet)".s1083: "53,88,123,135,389,445,3268,3269 TCP/UDP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: DNS/GC/Kerberos/LDAP/NTP/RPC/SMB (разрешение имён) (динамический диапазон RPC 49152-65535), порт 53,88,123,135,389,445,3268,3269 — к контроллеру домена"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s547 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s547 -> "Intranet: внутри периметра"."BSS"."СУБД".s576: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s519 -> "Intranet: внутри периметра"."BSS"."Серверы приложений".s565: "61617 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (MQ), порт 61617 — к серверу"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s519 -> "Intranet: внутри периметра"."BSS"."СУБД".s576: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s523 -> "Intranet: внутри периметра"."BSS"."Серверы приложений".s519: "61616 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (MQ), порт 61616 — к серверу"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s523 -> "Intranet: внутри периметра"."BSS"."Серверы приложений".s565: "61617 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (MQ), порт 61617 — к серверу"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s523 -> "Intranet: внутри периметра"."BSS"."СУБД".s576: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s565 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s565 -> "Intranet: внутри периметра"."BSS"."СУБД".s576: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s539 -> "Intranet: внутри периметра"."BSS"."Серверы приложений".s519: "61616 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (MQ), порт 61616 — к серверу"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s539 -> "Intranet: внутри периметра"."BSS"."Балансировщики и шлюзы".s735: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443 — к балансировщику"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s535 -> "Intranet: внутри периметра"."BSS"."Серверы приложений".s523: "61616 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (MQ), порт 61616 — к серверу"}
+"Intranet: внутри периметра"."BSS"."Серверы приложений".s535 -> "Intranet: внутри периметра"."BSS"."Балансировщики и шлюзы".s735: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443 — к балансировщику"}
+"Intranet: внутри периметра"."BSS"."Балансировщики и шлюзы".s735 -> "Extranet: вне периметра"."Клиенты ДБО B2B".s741: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443 — к клиенту"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s91 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s120: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s91 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s211: "3690 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SVN, порт 3690 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s91 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s103: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s120: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s119: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s85: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s55: "135 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: RPC, порт 135 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s89: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s213: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД (SQL), порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77 -> "Intranet: внутри периметра"."Корпоративный Прокси".s701: "3128 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 3128, правило №3 — в прокси; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s81 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s120: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s81 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s119: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s81 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77: "TCP" {class: essential; style.font-size: 32; tooltip: "Прикладной обмен — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s81 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s81 -> "Intranet: внутри периметра"."Контур ПСБР".s179: "9000 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 9000 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s85 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s94: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s85 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s101: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s87 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s85: "9081 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 9081 — к серверу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s87 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s103: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s55 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s120: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s89 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s89 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s101: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s969 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s85: "8080 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 8080 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s969 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929: "8083 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 8083 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s969 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s969 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."СУБД".s973: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s925 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s934: "7081,8043 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP/HTTPS), порт 7081,8043 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s925 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929: "8083 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 8083 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s925 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s925 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."СУБД".s939: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929 -> "Intranet: внутри периметра"."HA Proxy".s797: "21 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (FTP), порт 21 — в прокси"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929 -> "Intranet: внутри периметра"."HA Proxy".s797: "7500 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен — в прокси"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s992 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929: "8083 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 8083 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s992 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s992 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."СУБД".s996: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s1019 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s929: "8083 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 8083 — к серверу"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s1019 -> "Intranet: внутри периметра"."DIASOFT"."СУБД".s99: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."Серверы приложений".s1019 -> "Intranet: внутри периметра"."Diasoft Взаимодействие с Госорганами"."СУБД".s1015: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."HA Proxy".s797 -> "Extranet: вне периметра"."СМЭВ".s963: "21 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (FTP) через защищённый канал ViPNet, порт 21 — к внешнему сервису"}
+"Intranet: внутри периметра"."HA Proxy".s797 -> "Extranet: вне периметра"."СМЭВ".s896: "7500 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP) через защищённый канал ViPNet, порт 7500 — к внешнему сервису"}
+"Intranet: внутри периметра"."Контур ПСБР"."Контур Контроля".s203 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s183: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."Контур ПСБР".s179 -> "Intranet: внутри периметра"."Контур ПСБР"."Контур Контроля".s203: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к серверу"}
+"Intranet: внутри периметра"."Контур ПСБР"."Контур Формирования".s204 -> "Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s183: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к файловому ресурсу"}
+"Intranet: внутри периметра"."Контур ПСБР"."Контур Формирования".s204 -> "Intranet: внутри периметра"."Контур ПСБР".s179: "1433 TCP" {class: db; style.font-size: 32; tooltip: "Обращение приложения к СУБД, порт 1433 — к СУБД"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."Вебсервисы для КРЕ".s1062: "443,450 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443,450 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."ФЕДРЕСУРС".s1038: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443, правило №3, 5 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."Внешние системы (Extranet)".s1031: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443, правило №4 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."СПАРК".s913: "80 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTP), порт 80, правило №3 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."ЦБ РФ".s881: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443, правило №2 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."ЦБ РФ".s841: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443, правило №1 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Корпоративный Прокси".s701 -> "Extranet: вне периметра"."ЦБ РФ".s887: "443 TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен (HTTPS), порт 443, правило №2 — к внешнему сервису; соединение обслуживает KWTS (прокси-сервер, порт 3128)"}
+"Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s119 -> "Intranet: внутри периметра"."Контур ПСБР"."Контур ТШ ЦБРФ".s202: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s183 -> "Intranet: внутри периметра"."Контур ПСБР"."Контур ТШ ЦБРФ".s202: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Intranet: внутри периметра"."Файловые Серверы (NetApp Shares)".s118 -> "Intranet: внутри периметра"."DIASOFT"."Серверы приложений".s77: "445 TCP" {class: essential; style.font-size: 32; tooltip: "Служебный трафик: SMB (доступ к файловым шарам), порт 445 — к серверу"}
+"Extranet: вне периметра"."ЦБ РФ".s1049 -> "Extranet: вне периметра"."ЦБ РФ".s1051: "143,1414,2525,7777,8888,9010,9099,9696,9697 ICMP/TCP" {class: app; style.font-size: 32; tooltip: "Прикладной обмен, порт 143,1414,2525,7777,8888,9010,9099,9696,9697 — к внешнему сервису"}
+"Intranet: внутри периметра"."Контур ПСБР"."Контур ТШ ЦБРФ".s202 -> "Extranet: вне периметра"."ЦБ РФ".s1049: "443 TCP" {class: tunnel; style.font-size: 32; tooltip: "защищённый канал в ТШ КБР DiSec"}
+"ЛЕГЕНДА": {
+  near: bottom-left
+  direction: down
+  "Фигуры": {
+    direction: right
+    L1: {shape: cylinder; class: dbase; label: "СУБД"}
+    L2: {shape: hexagon; class: lb; label: "Балансировщик"}
+    L3: {shape: cloud; class: gate; label: "Корпоративный прокси"}
+    L4: {shape: cloud; class: ext; label: "Внешний сервис"}
+    L5: {shape: person; class: client; label: "Клиент"}
+    L6: {label: "Сервер приложений"}
+  }
+  "Связи": {
+    direction: right
+    E0: {class: hide}
+    E1: {class: hide}
+    E2: {class: hide}
+    E3: {class: hide}
+    E4: {class: hide}
+    E0 -> E1: "порт TCP · приложение" {class: app; style.font-size: 32}
+    E1 -> E2: "445 TCP · служебный" {class: essential; style.font-size: 32}
+    E2 -> E3: "1433 TCP · к СУБД" {class: db; style.font-size: 32}
+    E3 -> E4: "443 · защищённый канал" {class: tunnel; style.font-size: 32}
+  }
+  "Периметр": {
+    direction: right
+    P1: {label: "Intranet — внутри периметра банка"; style.fill: "#ddf4ff"; style.stroke: "#0969da"}
+    P2: {label: "Extranet — вне периметра"; style.fill: "#ffeef0"; style.stroke: "#cf222e"}
+  }
+}
